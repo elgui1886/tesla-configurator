@@ -1,0 +1,31 @@
+.app-container {
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+  
+    &--header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+  
+      .link {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-top: 0.0625rem solid var(--header-border-color);
+        border-left: 0.0625rem solid var(--header-border-color);
+        border-right: 0.0625rem solid var(--header-border-color);
+      }
+      .link:hover(:not([disabled])),
+      .link:focus,
+      .active {
+        background-color: gray;
+        text-decoration: none;
+      }
+    }
+  }
+  
