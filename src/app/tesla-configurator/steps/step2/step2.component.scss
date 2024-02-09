@@ -1,0 +1,15 @@
+.option-form {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--row-gap);
+
+    .config-value {
+        margin: calc(1.5 * var(--universal-margin)) var(--universal-margin);
+    }
+
+    .checkbox {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+}

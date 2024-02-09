@@ -1,10 +1,8 @@
-import { Router, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { TeslaConfiguratorComponent } from './tesla-configurator.component';
 import { TESLA_CONFIGURATOR_PROVIDERS } from './services';
-import { inject } from '@angular/core';
-import { ConfiguratorStateService } from './services/configurator-state.service';
-import { step1Guard } from './guards/step1.guard';
-import { map } from 'rxjs';
+import { step1RouteGuard } from './guards/step1.guard';
+import { step2RouteGuard } from './guards/step2.guard';
 
 export const routes: Routes = [
   {
@@ -12,6 +10,11 @@ export const routes: Routes = [
     component: TeslaConfiguratorComponent,
     providers: [...TESLA_CONFIGURATOR_PROVIDERS],
     children: [
+      {
+        path: '',
+        redirectTo: 'step1',
+        pathMatch: 'full',
+      },
       {
         path: 'step1',
         loadComponent: () =>
@@ -21,12 +24,13 @@ export const routes: Routes = [
         path: 'step2',
         loadComponent: () =>
           import('./steps/step2/step2.component').then((m) => m.Step2Component),
-        canActivate: [step1Guard],
+        canActivate: [step1RouteGuard],
       },
       {
         path: 'step3',
         loadComponent: () =>
           import('./steps/step3/step3.component').then((m) => m.Step3Component),
+          canActivate: [step2RouteGuard],
       },
     ],
   },

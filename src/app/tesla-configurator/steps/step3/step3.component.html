@@ -1,1 +1,35 @@
-<p>step3 works!</p>
+<div class="step-container">
+  <h1>Step 3: Summary</h1>
+  <h2>Your TESLA {{ carModel().description }}</h2>
+
+  <table>
+    <tr>
+      <td>
+        <h3>{{ carConfig().description }}</h3>
+        <p>{{ carConfig() | config }}</p>
+      </td>
+      <td>{{ carOption().config!.price | currency }}</td>
+    </tr>
+    <tr>
+      <td>
+        <h3>{{ carColor().description }}</h3>
+      </td>
+      <td>{{ carColor().price | currency }}</td>
+    </tr>
+    @if(carOption().towHitch) {
+    <tr>
+      <td><h3>Tow Hitch Package</h3></td>
+      <td>{{ "1000" | currency }}</td>
+    </tr>
+    } @if(carOption().yoke) {
+    <tr>
+      <td><h3>Yoke Steering Wheel</h3></td>
+      <td>{{ "1000" | currency }}</td>
+    </tr>
+    }
+    <tr>
+      <td><h3>TOTAL COST</h3></td>
+      <td>{{ totalCost() | currency }}</td>
+    </tr>
+  </table>
+</div>

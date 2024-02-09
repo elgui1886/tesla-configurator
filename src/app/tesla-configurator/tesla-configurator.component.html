@@ -1,11 +1,14 @@
 <div class="app-container">
     <header class="app-container--header">
       <button id="step1" routerLink="step1" routerLinkActive="active" class="link">STEP 1</button>
-      <button id="step2" [disabled]="!(canNavigate | async)" routerLink="step2"  routerLinkActive="active" class="link">STEP 2</button>
-      <button id="step3" [disabled]="!(canNavigate | async)" routerLink="step3" routerLinkActive="active" class="link">STEP 3</button>
+      <button id="step2" [disabled]="!(canNavigateToStep1 | async)" routerLink="step2"  routerLinkActive="active" class="link">STEP 2</button>
+      <button id="step3" [disabled]="!(canNavigateToStep1 | async) || !(canNavigateToStep2 | async)" routerLink="step3" routerLinkActive="active" class="link">STEP 3</button>
     </header>
-    <main>
+    <main class="app-container--main">
       <router-outlet></router-outlet>
+      @if(image$ | async; as image) {
+        <img [src]="image" />
+        }
     </main>
   </div>
 
