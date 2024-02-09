@@ -3,11 +3,18 @@ import { step1RouteGuard } from './guards/step1.guard';
 import { step2RouteGuard } from './guards/step2.guard';
 import { TESLA_CONFIGURATOR_PROVIDERS } from './services';
 import { TeslaConfiguratorComponent } from './tesla-configurator.component';
+import { IMAGE_LOADER, ImageLoaderConfig } from '@angular/common';
 export const routes: Routes = [
   {
     path: '',
     component: TeslaConfiguratorComponent,
-    providers: [...TESLA_CONFIGURATOR_PROVIDERS],
+    providers: [...TESLA_CONFIGURATOR_PROVIDERS,
+    {
+      provide: IMAGE_LOADER,
+      useValue: (config: ImageLoaderConfig) => {
+        return `https://interstate21.com/tesla-app/images/${config.src}`;
+      }
+    },],
     children: [
       {
         path: '',
@@ -29,7 +36,7 @@ export const routes: Routes = [
         path: 'step3',
         loadComponent: () =>
           import('./steps/step3/step3.component').then((m) => m.Step3Component),
-          canActivate: [step2RouteGuard],
+        canActivate: [step2RouteGuard],
       },
     ],
   },

@@ -8,9 +8,9 @@
   </header>
   <main class="app-container--main">
     <router-outlet></router-outlet>
-    @if(image$ | async; as image) {
+    @if((image$ | async); as image) {
     <div class="image-container">
-      <img [src]="image" />
+      <img [ngSrc]="image" height="100" width="100" />
     </div>
     }
   </main>

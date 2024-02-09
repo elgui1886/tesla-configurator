@@ -62,6 +62,6 @@ export class ConfiguratorStateService {
   }
 
   private _getCarUrlImage(carCode: string, carColor: string) {
-    return `${this._baseImageUrl}/${carCode}/${carColor}.jpg`;
+    return `${carCode}/${carColor}.jpg`;
   }
 }
