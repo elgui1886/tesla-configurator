@@ -1,8 +1,8 @@
 <div class="app-container">
     <header class="app-container--header">
-      <button routerLink="step1" routerLinkActive="active" class="link">STEP 1</button>
-      <button [disabled]="!(canNavigate | async)" routerLink="step2"  routerLinkActive="active" class="link">STEP 2</button>
-      <button routerLink="step3" routerLinkActive="active" class="link">STEP 3</button>
+      <button id="step1" routerLink="step1" routerLinkActive="active" class="link">STEP 1</button>
+      <button id="step2" [disabled]="!(canNavigate | async)" routerLink="step2"  routerLinkActive="active" class="link">STEP 2</button>
+      <button id="step3" [disabled]="!(canNavigate | async)" routerLink="step3" routerLinkActive="active" class="link">STEP 3</button>
     </header>
     <main>
       <router-outlet></router-outlet>

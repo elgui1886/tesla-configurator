@@ -4,9 +4,9 @@ import { Model } from '../models/models';
 
 @Injectable()
 export class ConfiguratorApiService {
-  private _httpClient = inject(HttpClient);
+  private _httpClient = inject(HttpClient);;
 
-  getModels() {
+  getCarModels() {
     return this._httpClient.get<Model[]>('/models');
   }
 

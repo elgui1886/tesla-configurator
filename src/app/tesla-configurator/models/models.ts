@@ -20,4 +20,9 @@ export type Option = {
     towHitch: boolean;
     yoke: boolean;
 }
+export type ConfiguratorState = { 
+    model: Model | null;
+    color: Color | null;
+    carUrl: string | null;
+  };
 

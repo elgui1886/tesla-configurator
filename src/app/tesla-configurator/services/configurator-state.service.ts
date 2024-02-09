@@ -1,33 +1,29 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-
-export type Configurator = { 
-  model: string | undefined;
-  color: string | undefined;
-};
-
-
-@Injectable({
-  providedIn: 'root'
-})
+import { Color, ConfiguratorState, Model } from '../models/models';
+@Injectable()
 export class ConfiguratorStateService {
-  private _configurator = new BehaviorSubject<Configurator>({model: undefined, color: undefined});
+  private readonly _baseUrl = 'https://interstate21.com/tesla-app/images';
+  private _configurator = new BehaviorSubject<ConfiguratorState>({ model: null, color: null, carUrl: null });
 
-  getConfigurator$() { 
+  getConfigurator$() {
     return this._configurator.asObservable();
   }
-  getConfigurator() { 
+  getConfigurator() {
     return this._configurator.getValue();
   }
 
-  setColor(color: string) {
-    const currentConfig = this.getConfigurator();
-    currentConfig.color = color;
-    this._configurator.next(currentConfig);
+  setCarModelAndColor(state:{ model: Model; color: Color }) {
+    const carUrl = this._getCarUrlImage(state.model.code , state.color.code);
+    this._configurator.next({ ...state, carUrl });
   }
-  setModel(model: string) { 
-    const currentConfig = this.getConfigurator();
-    currentConfig.model = model;
-    this._configurator.next(currentConfig);
+  resetCarModelAndColor() {
+    this._configurator.next({ model: null, color: null, carUrl: null });
+  }
+
+
+  private _getCarUrlImage(carCode: string | null, carColor: string | null) {
+    if (!carCode || !carColor) return null;
+    return `${this._baseUrl}/${carCode}/${carColor}.jpg`;
   }
 }

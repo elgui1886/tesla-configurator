@@ -1,1 +1,26 @@
-<p>step1 works!</p>
+<div style="display: flex; flex-direction: column;">
+    <form [formGroup]="form">
+        <label for="model">Model:</label>
+        <select id="modelSelect" name="model" formControlName="model">
+            <option value="" selected>Choose</option>
+            @for(model of models$ | async; track model.code) {
+            <option [ngValue]="model">
+                {{ model.description }}
+            </option>
+            }
+        </select>
+        @if(form.controls.model.value; as model) {
+        <label for="color">Color:</label>
+        <select id="colorSelect" name="color" formControlName="color">
+            @for(color of model.colors; track color.code) {
+            <option [ngValue]="color">
+                {{ color.description }}
+            </option>
+            }
+        </select>
+        }
+    </form>
+    @if(image$ | async; as image) {
+    <img [src]="image" />
+    }
+</div>
