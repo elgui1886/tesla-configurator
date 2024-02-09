@@ -39,5 +39,3 @@ export type CarModelInfo = {
     carUrl: string | null;
 };
 
-export type Step1State = Omit<CarModelInfo, 'carUrl'>
-

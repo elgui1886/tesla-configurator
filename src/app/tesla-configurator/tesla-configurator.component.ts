@@ -1,5 +1,5 @@
 
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { step1Guard } from './guards/step1.guard';
 import { AsyncPipe, NgOptimizedImage } from '@angular/common';
@@ -14,6 +14,7 @@ import { step2Guard } from './guards/step2.guard';
   imports: [RouterModule, AsyncPipe, NgOptimizedImage],
   templateUrl: './tesla-configurator.component.html',
   styleUrl: './tesla-configurator.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TeslaConfiguratorComponent {
   canNavigateToStep1 = step1Guard();

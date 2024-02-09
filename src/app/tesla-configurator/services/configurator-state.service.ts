@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
+import { CarColor, CarConfiguratorState, CarModelInfo, CarOption } from '@tesla-configurator/models/models';
 import { BehaviorSubject, map } from 'rxjs';
-import {
-  CarColor,
-  Step1State as Step1Info,
-  CarConfiguratorState,
-  CarOption,
-} from '../models/models';
 @Injectable()
 export class ConfiguratorStateService {
   private readonly _initlialState = {
@@ -16,7 +11,6 @@ export class ConfiguratorStateService {
       yoke: false,
     },
   };
-  private readonly _baseImageUrl = 'https://interstate21.com/tesla-app/images';
   private _carConfiguratorState = new BehaviorSubject<CarConfiguratorState>(
     this._initlialState
   );
@@ -26,7 +20,7 @@ export class ConfiguratorStateService {
     return this._carConfiguratorState.asObservable().pipe(map(selector));
   }
 
-  setCarModelAndColor({ model, color }: Step1Info) {
+  setCarModelAndColor({ model, color }: Omit<CarModelInfo, 'carUrl'>) {
     if (model && color) {
       const carUrl = this._getCarUrlImage(model.code, color.code);
       this._carConfiguratorState.next({

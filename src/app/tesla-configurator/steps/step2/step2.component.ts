@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { first, of, switchMap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -15,6 +15,7 @@ import { ConfiguratorStateService } from '@tesla-configurator/services/configura
   imports: [AsyncPipe, ReactiveFormsModule, CarConfigPipe],
   templateUrl: './step2.component.html',
   styleUrl: './step2.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Step2Component {
   private _formBuilder = inject(FormBuilder);

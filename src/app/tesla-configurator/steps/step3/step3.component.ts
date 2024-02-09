@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';;
 import { CurrencyPipe } from '@angular/common';
 import { CarModel, CarOption, CarColor, CarConfig } from '@tesla-configurator/models/models';
@@ -10,6 +10,7 @@ import { ConfiguratorStateService } from '@tesla-configurator/services/configura
   standalone: true,
   imports: [CarConfigPipe, CurrencyPipe],
   templateUrl: './step3.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Step3Component {
   private _state = toSignal(
