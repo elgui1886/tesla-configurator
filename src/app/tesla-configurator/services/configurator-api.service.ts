@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { CarModel, CarOptions } from '../models/models';
+import { CarModel, CarOptions } from '@tesla-configurator/models/models';
 
 @Injectable()
 export class ConfiguratorApiService {

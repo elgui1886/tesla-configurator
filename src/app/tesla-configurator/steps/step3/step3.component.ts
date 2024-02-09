@@ -1,9 +1,9 @@
 import { Component, computed, inject } from '@angular/core';
-import { ConfiguratorStateService } from '../../services/configurator-state.service';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { CarConfigPipe } from '../../pipes/car-option.pipe';
+import { toSignal } from '@angular/core/rxjs-interop';;
 import { CurrencyPipe } from '@angular/common';
-import { CarColor, CarConfig, CarModel, CarOption } from '../../models/models';
+import { CarModel, CarOption, CarColor, CarConfig } from '@tesla-configurator/models/models';
+import { CarConfigPipe } from '@tesla-configurator/pipes/car-option.pipe';
+import { ConfiguratorStateService } from '@tesla-configurator/services/configurator-state.service';
 
 @Component({
   selector: 'app-step3',

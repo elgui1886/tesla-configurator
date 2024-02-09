@@ -1,8 +1,8 @@
 import { Pipe, PipeTransform, inject } from '@angular/core';
-import { SpeedPipe } from '../../shared/pipes/speed.pipe';
 import { CurrencyPipe } from '@angular/common';
-import { CarConfig } from '../models/models';
-import { DistancePipe } from '../../shared/pipes/distance.pipe';
+import { DistancePipe } from '@shared/pipes/distance.pipe';
+import { CarConfig } from '@tesla-configurator/models/models';
+import { SpeedPipe } from '@shared/pipes/speed.pipe';
 
 @Pipe({
   name: 'config',

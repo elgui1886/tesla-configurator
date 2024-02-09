@@ -1,6 +1,6 @@
-import { ConfiguratorStateService } from '../services/configurator-state.service';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConfiguratorStateService } from '@tesla-configurator/services/configurator-state.service';
 import { map } from 'rxjs';
 
 export const step1Guard = () => {

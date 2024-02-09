@@ -4,16 +4,16 @@ import {
   inject,
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { ConfiguratorApiService } from '../../services/configurator-api.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AsyncPipe, JsonPipe, NgOptimizedImage } from '@angular/common';
-import { ConfiguratorStateService } from '../../services/configurator-state.service';
+import { AsyncPipe } from '@angular/common';
 import { first } from 'rxjs';
-import { CarColor, CarModelInfo, CarModel } from '../../models/models';
+import { CarColor, CarModel, CarModelInfo } from '@tesla-configurator/models/models';
+import { ConfiguratorStateService } from '@tesla-configurator/services/configurator-state.service';
+import { ConfiguratorApiService } from '@tesla-configurator/services/configurator-api.service';
 @Component({
   selector: 'app-step1',
   standalone: true,
-  imports: [ReactiveFormsModule, JsonPipe, AsyncPipe, NgOptimizedImage],
+  imports: [ReactiveFormsModule, AsyncPipe],
   templateUrl: './step1.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

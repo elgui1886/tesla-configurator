@@ -3,10 +3,10 @@ import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { step1Guard } from './guards/step1.guard';
 import { AsyncPipe } from '@angular/common';
-import { step2Guard } from './guards/step2.guard';
-import { ConfiguratorStateService } from './services/configurator-state.service';
 import { map } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ConfiguratorStateService } from './services/configurator-state.service';
+import { step2Guard } from './guards/step2.guard';
 
 @Component({
   selector: 'app-tesla-configurator',

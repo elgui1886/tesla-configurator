@@ -1,17 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { ConfiguratorStateService } from '../../services/configurator-state.service';
-import { ConfiguratorApiService } from '../../services/configurator-api.service';
-import { first, map, of, switchMap } from 'rxjs';
+import { first, of, switchMap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AsyncPipe, JsonPipe } from '@angular/common';
-import { CarConfig, CarOption, CarOptions } from '../../models/models';
-import { CarConfigPipe } from '../../pipes/car-option.pipe';
+import { AsyncPipe } from '@angular/common';
+import { CarConfig, CarOption } from '@tesla-configurator/models/models';
+import { CarConfigPipe } from '@tesla-configurator/pipes/car-option.pipe';
+import { ConfiguratorApiService } from '@tesla-configurator/services/configurator-api.service';
+import { ConfiguratorStateService } from '@tesla-configurator/services/configurator-state.service';
+;
 
 @Component({
   selector: 'app-step2',
   standalone: true,
-  imports: [AsyncPipe, ReactiveFormsModule, JsonPipe, CarConfigPipe],
+  imports: [AsyncPipe, ReactiveFormsModule, CarConfigPipe],
   templateUrl: './step2.component.html',
   styleUrl: './step2.component.scss',
 })

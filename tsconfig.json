@@ -19,6 +19,14 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
+    "paths": {
+      "@shared/*": [
+        "./src/app/shared/*"
+      ],
+      "@tesla-configurator/*": [
+        "./src/app/tesla-configurator/*"
+      ],
+    },
     "lib": [
       "ES2022",
       "dom"

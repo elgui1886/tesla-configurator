@@ -1,9 +1,8 @@
 import { Routes } from '@angular/router';
-import { TeslaConfiguratorComponent } from './tesla-configurator.component';
-import { TESLA_CONFIGURATOR_PROVIDERS } from './services';
 import { step1RouteGuard } from './guards/step1.guard';
 import { step2RouteGuard } from './guards/step2.guard';
-
+import { TESLA_CONFIGURATOR_PROVIDERS } from './services';
+import { TeslaConfiguratorComponent } from './tesla-configurator.component';
 export const routes: Routes = [
   {
     path: '',
