@@ -29,9 +29,13 @@ export class Step1Component {
   colors = computed(() => this.selectedModel()?.colors || []);
   selectedColor = toSignal(this._configurationStateService.select(model => model.carModel.color));
 
-  carModelChanged(model: CarModel) {
-    const color = model.colors[0];
-    this._configurationStateService.setCarModelAndColor({model, color});
+  carModelChanged(model: CarModel | undefined) {
+    if (model) {
+      const color = model.colors[0];
+      this._configurationStateService.setCarModelAndColor({model, color});
+    } else {
+      this._configurationStateService.resetCarModelAndColor();
+    }
   }
   carColorChanged(color: CarColor) {
     this._configurationStateService.setCarColor(color);

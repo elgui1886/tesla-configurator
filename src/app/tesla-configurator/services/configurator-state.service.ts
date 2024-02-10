@@ -49,14 +49,9 @@ export class ConfiguratorStateService {
       });
     }
   }
-  setCarOption(option: CarOption) {
-    const currentState = this._carConfiguratorState.getValue();
-    this._carConfiguratorState.next({
-      ...currentState,
-      option,
-    });
+  resetCarModelAndColor() {
+    this._carConfiguratorState.next(this._initlialState);
   }
-
   setCarOptionConfig(option: CarConfig) {
     const currentState = this._carConfiguratorState.getValue();
     this._carConfiguratorState.next({
@@ -67,7 +62,6 @@ export class ConfiguratorStateService {
       },
     });
   }
-
   setCarOptionYoke(yoke: boolean) {
     const currentState = this._carConfiguratorState.getValue();
     this._carConfiguratorState.next({
