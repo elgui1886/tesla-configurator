@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/mini.css/dist/mini-dark.min.css";
 :root {
-  --row-gap: 0, 25rem;
+  --gap: 0, 25rem;
 }
 
 html,
@@ -16,6 +16,7 @@ button[disabled] {
 }
 button[disabled]:hover {
   background-color: unset;
+  cursor: not-allowed;
 }
 
 table {
@@ -37,5 +38,17 @@ table {
 .step-container {
   display: flex;
   flex-direction: column;
-  row-gap: var(--row-gap);
+  row-gap: var(--gap);
+
+  .step-row {
+      display: flex;
+      flex-direction: row;
+      column-gap: var(--gap);
+      background: var(--form-back-color);
+      color: var(--form-fore-color);
+      border: 0.0625rem solid var(--form-border-color);
+      border-radius: var(--universal-border-radius);
+      margin: var(--universal-margin);
+      padding: calc(2 * var(--universal-padding)) var(--universal-padding);
+  }
 }

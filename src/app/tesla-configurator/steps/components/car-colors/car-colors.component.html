@@ -1,0 +1,16 @@
+@if(colors.length > 0) {
+<label for="color">Color:</label>
+<select
+  [compareWith]="compareColorFn"
+  id="colorSelect"
+  name="color"
+  [(ngModel)]="selectedColor"
+  (ngModelChange)="this.carColorChange.emit($event)">
+>
+  @for(color of colors; track color.code) {
+  <option [ngValue]="color">
+    {{ color.description }}
+  </option>
+  }
+</select>
+}

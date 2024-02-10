@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
-import { CarColor, CarConfiguratorState, CarModelInfo, CarOption } from '@tesla-configurator/models/models';
+import {
+  CarColor,
+  CarConfig,
+  CarConfiguratorState,
+  CarModelInfo,
+  CarOption,
+} from '@tesla-configurator/models/models';
 import { BehaviorSubject, map } from 'rxjs';
 @Injectable()
 export class ConfiguratorStateService {
   private readonly _initlialState = {
-    carModel: { model: null, color: null, carUrl: null },
+    carModel: { model: undefined, color: undefined, carUrl: undefined },
     option: {
-      config: null,
+      config: undefined,
       towHitch: false,
       yoke: false,
     },
@@ -14,7 +20,6 @@ export class ConfiguratorStateService {
   private _carConfiguratorState = new BehaviorSubject<CarConfiguratorState>(
     this._initlialState
   );
-
 
   select<K>(selector: (state: CarConfiguratorState) => K) {
     return this._carConfiguratorState.asObservable().pipe(map(selector));
@@ -51,8 +56,37 @@ export class ConfiguratorStateService {
       option,
     });
   }
-  resetCarModelAndColor() {
-    this._carConfiguratorState.next(this._initlialState);
+
+  setCarOptionConfig(option: CarConfig) {
+    const currentState = this._carConfiguratorState.getValue();
+    this._carConfiguratorState.next({
+      ...currentState,
+      option: {
+        ...currentState.option,
+        config: option,
+      },
+    });
+  }
+
+  setCarOptionYoke(yoke: boolean) {
+    const currentState = this._carConfiguratorState.getValue();
+    this._carConfiguratorState.next({
+      ...currentState,
+      option: {
+        ...currentState.option,
+        yoke,
+      },
+    });
+  }
+  setCarOptionTowHitch(towHitch: boolean) {
+    const currentState = this._carConfiguratorState.getValue();
+    this._carConfiguratorState.next({
+      ...currentState,
+      option: {
+        ...currentState.option,
+        towHitch,
+      },
+    });
   }
 
   private _getCarUrlImage(carCode: string, carColor: string) {

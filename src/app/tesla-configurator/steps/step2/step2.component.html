@@ -1,40 +1,31 @@
-@if(option$ | async; as carOption) {
 <div class="step-container">
   <h1>Step 2: Select your config and options</h1>
-  <form class="option-form" [formGroup]="form">
-    <div>
-      <label for="config">Config:</label>
-      <select
-        [compareWith]="compareConfigurationsFn"
-        id="configSelect"
-        name="config"
-        formControlName="config"
-      >
-        <option [ngValue]="null" selected>Choose</option>
-        @for(config of carOption.configs; track config.id) {
-        <option [ngValue]="config">
-          {{ config.description }}
-        </option>
-        }
-      </select>
-    </div>
-    @if(form.controls.config.value; as value) {
-        <div class="config-value">
-            {{ value | config }}
-        </div>
+  <div class="step-row">
+    <div class="options">
+      <app-car-configuration
+        [configurations]="configurations()"
+        [selectedConfiguration]="selectedConfiguration()"
+        (carConfigurationChange)="
+          configurationStateService.setCarOptionConfig($event)
+        "
+      />
+      @if(hasTowHitchOption()) {
+      <app-car-checkbox
+        id="includeTow"
+        label="Tow hitch?"
+        [selected]="selectedTowHitch()"
+        (checkboxChange)="
+          configurationStateService.setCarOptionTowHitch($event)
+        "
+      />
+      } @if(hasYokeOption()) {
+      <app-car-checkbox
+        id="includeYoke"
+        label="Yoke steering wheel?"
+        [selected]="selectedYoke()"
+        (checkboxChange)="configurationStateService.setCarOptionYoke($event)"
+      />
       }
-    @if(carOption.towHitch) {
-    <div class="checkbox">
-      <label for="config">Tow hitch?</label>
-      <input type="checkbox" id="includeTow" formControlName="towHitch" />
     </div>
-    } 
-    @if(carOption.yoke) {
-    <div class="checkbox">
-      <label for="config">Yoke steering wheel?</label>
-      <input type="checkbox" id="includeYoke" formControlName="yoke" />
-    </div>
-    }
-  </form>
+  </div>
 </div>
-}

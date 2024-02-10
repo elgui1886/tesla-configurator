@@ -1,72 +1,39 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
 } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AsyncPipe } from '@angular/common';
-import { first } from 'rxjs';
-import { CarColor, CarModel, CarModelInfo } from '@tesla-configurator/models/models';
+import { CarColor, CarModel } from '@tesla-configurator/models/models';
 import { ConfiguratorStateService } from '@tesla-configurator/services/configurator-state.service';
 import { ConfiguratorApiService } from '@tesla-configurator/services/configurator-api.service';
+import { CarModelsComponent } from '../components/car-models/car-models.component';
+import { CarColorsComponent } from '../components/car-colors/car-colors.component';
+import { toSignal } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-step1',
   standalone: true,
-  imports: [ReactiveFormsModule, AsyncPipe],
+  imports: [CarModelsComponent, CarColorsComponent],
   templateUrl: './step1.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Step1Component {
-  private _formBuilder = inject(FormBuilder);
   private _configurationStateService = inject(ConfiguratorStateService);
   private _apiService = inject(ConfiguratorApiService);
 
-  compareModelFn(model1: CarModel, model2: CarModel): boolean {
-    return model1 && model2 && model1.code === model2.code || (!model1 && !model2);
-  }
-  compareColorFn(color1: CarColor, color2: CarModel): boolean {
-    return color1 && color2 && color1.code === color2.code;
-  }
-
-  models$ = this._apiService.getCarModels();
-
-  form = this._formBuilder.group<Omit<CarModelInfo, 'carUrl'>>({
-    model: null,
-    color: null,
+  models = toSignal(this._apiService.getCarModels(), {
+    initialValue: [],
   });
+  selectedModel = toSignal(this._configurationStateService.select(model => model.carModel.model));
 
-  constructor() {
-    this.form.controls.model.valueChanges
-      .pipe(takeUntilDestroyed())
-      .subscribe((model) => {
-        if (model) {
-          const color = model.colors[0];
-          this.form.setValue(
-            { model, color },
-            {
-              emitEvent: false,
-            }
-          );
-          this._configurationStateService.setCarModelAndColor({ model, color });
-        } else {
-          this._configurationStateService.resetCarModelAndColor();
-        }
-      });
-    this.form.controls.color.valueChanges
-      .pipe(takeUntilDestroyed())
-      .subscribe((color) => {
-        if (color) this._configurationStateService.setCarColor(color);
-      });
+  colors = computed(() => this.selectedModel()?.colors || []);
+  selectedColor = toSignal(this._configurationStateService.select(model => model.carModel.color));
 
-    this._configurationStateService
-      .select(model => model.carModel)
-      .pipe(first())
-      .subscribe(({model,color}) => {
-        this.form.setValue({
-          model,
-          color,
-        }, { emitEvent: false });
-      });
+  carModelChanged(model: CarModel) {
+    const color = model.colors[0];
+    this._configurationStateService.setCarModelAndColor({model, color});
+  }
+  carColorChanged(color: CarColor) {
+    this._configurationStateService.setCarColor(color);
   }
 }

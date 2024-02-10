@@ -1,0 +1,9 @@
+<label for="model">Model:</label>
+<select  id="modelSelect" [compareWith]="compareModelFn" [(ngModel)]="selectedModel" (ngModelChange)="carModelChange.emit($event)">
+  <option [ngValue]="undefined" selected>Choose</option>
+  @for(model of models; track model.code) {
+  <option [ngValue]="model">
+    {{ model.description }}
+  </option>
+  }
+</select>

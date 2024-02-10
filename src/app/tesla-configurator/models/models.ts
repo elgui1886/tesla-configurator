@@ -22,7 +22,7 @@ export type CarOptions = {
 }
 
 export type CarOption = { 
-    config: CarConfig | null;
+    config: CarConfig | undefined;
     towHitch: boolean;
     yoke: boolean;
 }
@@ -34,8 +34,8 @@ export type CarConfiguratorState = {
 }
 
 export type CarModelInfo = { 
-    model: CarModel | null;
-    color: CarColor | null;
-    carUrl: string | null;
+    model: CarModel | undefined;
+    color: CarColor | undefined;
+    carUrl: string | undefined;
 };
 

@@ -1,24 +1,7 @@
 <div class="step-container">
     <h1>Step 1: Choose your Model and color</h1>
-    <form [formGroup]="form">
-        <label for="model">Model:</label>
-        <select [compareWith]="compareModelFn" id="modelSelect" name="model" formControlName="model">
-            <option [ngValue]="null" selected>Choose</option>
-            @for(model of models$ | async; track model.code) {
-            <option [ngValue]="model">
-                {{ model.description }}
-            </option>
-            }
-        </select>
-        @if(form.controls.model.value; as model) {
-        <label for="color">Color:</label>
-        <select [compareWith]="compareColorFn" id="colorSelect" name="color" formControlName="color">
-            @for(color of model.colors; track color.code) {
-            <option [ngValue]="color">
-                {{ color.description }}
-            </option>
-            }
-        </select>
-        }
-    </form>
+    <div class="step-row">
+        <app-car-model [models]="models()" [selectedModel]="selectedModel()" (carModelChange)="carModelChanged($event)"/>
+        <app-car-colors [colors]="colors()" [selectedColor]="selectedColor()" (carColorChange)="carColorChanged($event)"></app-car-colors>
+    </div>
 </div>
