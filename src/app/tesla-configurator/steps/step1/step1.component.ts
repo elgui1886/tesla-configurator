@@ -4,12 +4,12 @@ import {
   computed,
   inject,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { CarColor, CarModel } from '@tesla-configurator/models/models';
 import { ConfiguratorStateService } from '@tesla-configurator/services/configurator-state.service';
 import { ConfiguratorApiService } from '@tesla-configurator/services/configurator-api.service';
-import { CarModelsComponent } from '../components/car-models/car-models.component';
-import { CarColorsComponent } from '../components/car-colors/car-colors.component';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { CarModelsComponent } from '@tesla-configurator/steps/components/car-models/car-models.component';
+import { CarColorsComponent } from '@tesla-configurator/steps/components/car-colors/car-colors.component';
 @Component({
   selector: 'app-step1',
   standalone: true,

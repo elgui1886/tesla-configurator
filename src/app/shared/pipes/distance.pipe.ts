@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   standalone: true
 })
 export class DistancePipe implements PipeTransform {
-  transform(distance: number, unitOfMeasure = 'miles'): unknown {
+  transform(distance: number, unitOfMeasure = 'miles') {
     return `${distance} ${unitOfMeasure}`;
   }
 }

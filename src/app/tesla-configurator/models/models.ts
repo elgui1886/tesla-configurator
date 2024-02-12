@@ -8,7 +8,7 @@ export type CarModel = {
     description: string;
     colors: CarColor[];
 }
-export type CarConfig = {
+export type CarModelConfig = {
     id: number;
     description: string;
     range: number;
@@ -16,23 +16,19 @@ export type CarConfig = {
     price: number;
 }
 export type CarOptions = { 
-    configs: CarConfig[];
+    configs: CarModelConfig[];
     towHitch: boolean;
     yoke: boolean;
 }
-
 export type CarOption = { 
-    config: CarConfig | undefined;
+    config: CarModelConfig | undefined;
     towHitch: boolean;
     yoke: boolean;
 }
-
-
 export type CarConfiguratorState = {
     carModel: CarModelInfo,
     option: CarOption
 }
-
 export type CarModelInfo = { 
     model: CarModel | undefined;
     color: CarColor | undefined;

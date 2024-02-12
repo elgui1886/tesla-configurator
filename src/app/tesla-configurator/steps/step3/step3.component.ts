@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';;
 import { CurrencyPipe } from '@angular/common';
-import { CarModel, CarOption, CarColor, CarConfig } from '@tesla-configurator/models/models';
+import { CarModel, CarOption, CarColor, CarModelConfig } from '@tesla-configurator/models/models';
 import { CarConfigPipe } from '@tesla-configurator/pipes/car-option.pipe';
 import { ConfiguratorStateService } from '@tesla-configurator/services/configurator-state.service';
 
@@ -27,7 +27,7 @@ export class Step3Component {
   });
   carConfig = computed(() => {
     const carOption = this.carOption();
-    return carOption.config ?? {} as CarConfig;
+    return carOption.config ?? {} as CarModelConfig;
   })
   totalCost = computed(() => {
     const carOption = this.carOption();

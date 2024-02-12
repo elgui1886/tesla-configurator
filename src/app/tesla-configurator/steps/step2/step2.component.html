@@ -6,7 +6,7 @@
         [configurations]="configurations()"
         [selectedConfiguration]="selectedConfiguration()"
         (carConfigurationChange)="
-          configurationStateService.setCarOptionConfig($event)
+          configurationStateService.setCarModelConfig($event)
         "
       />
       @if(hasTowHitchOption()) {

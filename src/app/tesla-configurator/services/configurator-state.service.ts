@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
   CarColor,
-  CarConfig,
+  CarModelConfig,
   CarConfiguratorState,
-  CarModelInfo,
-  CarOption,
+  CarModelInfo
 } from '@tesla-configurator/models/models';
 import { BehaviorSubject, map } from 'rxjs';
 @Injectable()
@@ -52,7 +51,7 @@ export class ConfiguratorStateService {
   resetCarModelAndColor() {
     this._carConfiguratorState.next(this._initlialState);
   }
-  setCarOptionConfig(option: CarConfig) {
+  setCarModelConfig(option: CarModelConfig) {
     const currentState = this._carConfiguratorState.getValue();
     this._carConfiguratorState.next({
       ...currentState,

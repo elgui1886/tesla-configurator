@@ -1,10 +1,10 @@
 
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { step1Guard } from './guards/step1.guard';
 import { AsyncPipe, NgOptimizedImage } from '@angular/common';
-import { map } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
+import { step1Guard } from './guards/step1.guard';
 import { ConfiguratorStateService } from './services/configurator-state.service';
 import { step2Guard } from './guards/step2.guard';
 

@@ -1,4 +1,4 @@
 <div class="checkbox">
-    <label for="car-checkbox">{{label}}</label>
+    <label>{{label}}</label>
     <input name="car-checkbox" type="checkbox" [id]="id" [(ngModel)]="selected" (ngModelChange)="this.checkboxChange.emit($event)" />
 </div>

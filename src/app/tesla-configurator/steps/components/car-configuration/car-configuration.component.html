@@ -1,7 +1,8 @@
-<label for="config">Config:</label>
+<label>Config:</label>
 <select
   [compareWith]="compareConfigurationsFn"
   id="configSelect"
+  name="config"
   [(ngModel)]="selectedConfiguration"
   (ngModelChange)="this.carConfigurationChange.emit($event)"
 >
